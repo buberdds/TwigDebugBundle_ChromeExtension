@@ -30,6 +30,7 @@ body {
 
 var renderTemplates = function(templates) {
   var container = document.getElementById('templates'), ul, li;
+  container.innerHTML = '';
   if (templates.length) {
     ul = document.createElement('ul');
     templates.forEach(function(template, i) {
@@ -37,11 +38,9 @@ var renderTemplates = function(templates) {
       li.innerHTML = template;
       ul.appendChild(li);
     });
-    container.innerHTML = '';
     container.appendChild(ul);
   } else {
-    container.innerHTML = '';
-    container.innerHTML = 'Templates not found.';  	
+    container.innerHTML = 'Templates not found.';
   }
 };
 
