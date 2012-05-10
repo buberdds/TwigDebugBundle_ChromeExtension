@@ -1,0 +1,66 @@
+<style>
+body {
+  margin: 0;
+  padding: 5px;
+	font: 81.25% arial, helvetica, sans-serif;
+	color: #333;  
+  
+}
+#templates {
+  min-width: 125px;
+}
+#templates ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#templates li {
+  white-space: nowrap;
+  margin: 0;
+  padding: 3px 0;
+  border-bottom: dashed 1px #E1E1E1;
+}
+
+</style>
+<body>
+
+<div id="templates"></div>
+
+<script>
+
+var renderTemplates = function(templates) {
+  var container = document.getElementById('templates'), ul, li;
+  if (templates.length) {
+    ul = document.createElement('ul');
+    templates.forEach(function(template, i) {
+      li = document.createElement('li');
+      li.innerHTML = template;
+      ul.appendChild(li);
+    });
+    container.innerHTML = '';
+    container.appendChild(ul);
+  } else {
+    container.innerHTML = '';
+    container.innerHTML = 'Templates not found.';  	
+  }
+};
+
+var getTemplates = function() {
+  chrome.tabs.getSelected(null, function(tab) {
+    chrome.tabs.sendRequest(tab.id, {type: 'templates'}, function(response) {
+      renderTemplates(response.templates);
+    });
+  });
+};
+
+
+chrome.extension.onRequest.addListener(function(request, sender, callback) {
+  if (request.id === 'templates') {
+    renderTemplates(request.templates);
+  }
+});
+
+getTemplates();
+
+</script>
+</body>

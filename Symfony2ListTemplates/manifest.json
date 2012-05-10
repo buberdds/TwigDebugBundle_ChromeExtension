@@ -1,0 +1,27 @@
+{
+  "name": "Twig Templates / Symfony 2",
+  "version": "0.9",
+  "description": "List Twig Templates / Symfony 2",
+  "background_page": "background.html",
+  "permissions": [
+    "http://localhost/*",  
+    "tabs",
+    "http://*/"
+  ],
+  "icons": {
+    "48": "icon48.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": [
+        "content.js" 
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icon19.png", // required
+    "default_title": "List Templates",      // optional; shown in tooltip
+    "default_popup": "popup.html"        // optional
+  }
+}
