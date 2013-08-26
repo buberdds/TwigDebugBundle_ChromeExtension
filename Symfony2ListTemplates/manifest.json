@@ -2,7 +2,8 @@
   "name": "Twig Templates / Symfony 2",
   "version": "0.9",
   "description": "List Twig Templates / Symfony 2",
-  "background_page": "background.html",
+  "background": "background.html",
+  "manifest_version": 2,
   "permissions": [
     "http://localhost/*",  
     "tabs",
